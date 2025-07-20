@@ -1,15 +1,17 @@
 <template>
     <div>
-        <h2>All Blog Posts</h2>
+        <h2 class="text-lg sm:text-xl font-semibold mb-4">All Blog Posts</h2>
 
-        <input v-model="searchQuery" placeholder="Search by title..." class="search-input" />
+        <input v-model="searchQuery" placeholder="Search by title..."
+            class="mb-6 p-2 border border-gray-300 rounded w-full max-w-md" />
 
-        <div v-if="filteredPosts.length === 0">No matching posts found.</div>
+        <div v-if="filteredPosts.length === 0" class="text-gray-500">No matching posts found.</div>
 
-        <ul>
-            <li v-for="post in filteredPosts" :key="post.id">
-                <router-link :to="`/post/${post.id}`">
-                    <strong>{{ post.title }}</strong>
+        <ul class="space-y-4">
+            <li v-for="post in filteredPosts" :key="post.id" class="bg-white p-4 rounded shadow">
+                <router-link :to="`/post/${post.id}`"
+                    class="text-base sm:text-lg font-bold text-teal-700 hover:underline block">
+                    {{ post.title }}
                 </router-link>
             </li>
         </ul>
@@ -40,13 +42,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.search-input {
-    margin-bottom: 20px;
-    padding: 8px;
-    width: 100%;
-    max-width: 300px;
-    font-size: 1rem;
-}
-</style>

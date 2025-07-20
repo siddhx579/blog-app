@@ -1,18 +1,25 @@
 <template>
-    <div v-if="post">
-        <h2>Edit Post</h2>
-        <form @submit.prevent="handleUpdate">
-            <label>Title:</label>
-            <input v-model="title" required />
+    <div>
+        <h2 class="text-lg sm:text-xl font-semibold mb-4">{{ isEdit ? 'Edit Post' : 'Create New Post' }}</h2>
 
-            <label>Content:</label>
-            <textarea v-model="content" required></textarea>
+        <form @submit.prevent="handleSubmit" class="space-y-4">
+            <div>
+                <label class="block mb-1 font-medium">Title:</label>
+                <input v-model="title" required
+                    class="w-full p-2 border border-gray-300 rounded text-sm sm:text-base" />
+            </div>
 
-            <button type="submit">Update Post</button>
+            <div>
+                <label class="block mb-1 font-medium">Content:</label>
+                <textarea v-model="content" required
+                    class="w-full p-2 border border-gray-300 rounded h-40 text-sm sm:text-base" />
+            </div>
+
+            <button type="submit"
+                class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 text-sm sm:text-base">
+                {{ isEdit ? 'Update Post' : 'Add Post' }}
+            </button>
         </form>
-    </div>
-    <div v-else>
-        <p>Post not found.</p>
     </div>
 </template>
 
@@ -43,26 +50,3 @@ export default {
     },
 }
 </script>
-
-<style>
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-input,
-textarea {
-    padding: 8px;
-    font-size: 1rem;
-}
-
-button {
-    width: 120px;
-    padding: 8px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-</style>

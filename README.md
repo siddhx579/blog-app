@@ -33,8 +33,7 @@ A simple, modern blog application built with **Vue.js** and styled using **Tailw
 
 ## 🛠️ Project Setup
 
-    ```bash
-    # 1. Clone the repo
+  # 1. Clone the repo
     git clone https://github.com/your-username/vue-blog-app.git
     cd vue-blog-app
 

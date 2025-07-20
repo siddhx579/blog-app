@@ -2,8 +2,6 @@
 
 A simple, modern blog application built with **Vue.js** and styled using **Tailwind CSS CDN**. Users can create, view, edit, delete, and search blog posts — with data stored in the browser using `localStorage`.
 
-![screenshot](https://via.placeholder.com/1200x600.png?text=Vue+Blog+App+Screenshot)
-
 ---
 
 ## 🚀 Features

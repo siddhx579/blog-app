@@ -1,12 +1,16 @@
 <template>
-    <div v-if="post">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.content }}</p>
-        <router-link :to="`/edit/${post.id}`">Edit</router-link>
-        <button @click="deletePost">Delete Post</button>
+    <div v-if="post" class="bg-white p-4 sm:p-6 rounded shadow">
+        <h2 class="text-xl sm:text-2xl font-bold mb-2">{{ post.title }}</h2>
+        <p class="text-gray-700 mb-4 whitespace-pre-line text-sm sm:text-base">{{ post.content }}</p>
+
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4">
+            <router-link :to="`/edit/${post.id}`"
+                class="text-blue-600 hover:underline text-sm sm:text-base">Edit</router-link>
+            <button @click="deletePost" class="text-red-600 hover:underline text-sm sm:text-base">Delete</button>
+        </div>
     </div>
-    <div v-else>
-        <p>Post not found.</p>
+    <div v-else class="text-gray-500 text-sm sm:text-base">
+        Post not found.
     </div>
 </template>
 
@@ -29,14 +33,3 @@ export default {
     },
 }
 </script>
-
-<style>
-button {
-    margin-top: 20px;
-    background-color: red;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-}
-</style>

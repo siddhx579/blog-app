@@ -26,7 +26,7 @@
 <script>
 import { useRoute, useRouter } from 'vue-router'
 import { blogStore } from '../data/blogStore'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export default {
     setup() {
@@ -34,19 +34,33 @@ export default {
         const router = useRouter()
 
         const post = blogStore.getPost(route.params.id)
+        const isEdit = computed(() => !!post)
+
         const title = ref(post?.title || '')
         const content = ref(post?.content || '')
 
-        const handleUpdate = () => {
-            const index = blogStore.posts.findIndex(p => p.id === route.params.id)
-            if (index !== -1) {
-                blogStore.posts[index].title = title.value
-                blogStore.posts[index].content = content.value
-                router.push(`/post/${route.params.id}`)
+        const handleSubmit = () => {
+            if (isEdit.value) {
+                // Edit mode
+                const index = blogStore.posts.findIndex(p => p.id === route.params.id)
+                if (index !== -1) {
+                    blogStore.posts[index].title = title.value
+                    blogStore.posts[index].content = content.value
+                    router.push(`/post/${route.params.id}`)
+                }
+            } else {
+                // Add mode
+                const newPost = {
+                    id: Date.now().toString(),
+                    title: title.value,
+                    content: content.value,
+                }
+                blogStore.posts.push(newPost)
+                router.push('/')
             }
         }
 
-        return { title, content, handleUpdate, post }
+        return { title, content, handleSubmit, isEdit }
     },
 }
 </script>
